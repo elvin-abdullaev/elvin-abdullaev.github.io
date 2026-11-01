@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Elvin Abdullaev</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#121212; --card:#1e1e1f; --card-2:#202022; --card-3:#2b2b2c;
+  --line:#383838; --text:#d6d6d6; --muted:#9a9a9a; --white:#fafafa;
+  --gold:#ffdb70; --gold-2:#ffbb5c;
+  --grad-border:linear-gradient(to bottom right, hsl(0,0%,25%) 0%, hsla(0,0%,25%,0) 50%);
+  --grad-card:linear-gradient(to bottom right, hsla(240,1%,18%,.5) 0%, hsla(240,2%,11%,0) 100%), hsl(240,2%,13%);
+  --grad-icon:linear-gradient(to bottom right, hsl(240,1%,25%) 3%, hsl(0,0%,19%) 97%);
+  --shadow:0 16px 30px hsla(0,0%,0%,.25);
+  --font:"Poppins", "Segoe UI", Roboto, Arial, sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0; background:var(--bg); color:var(--text); font-family:var(--font); font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased}
+img{max-width:100%; display:block}
+a{color:inherit}
+h1,h2,h3,h4{margin:0; color:var(--white); font-weight:600; text-wrap:balance}
+p{margin:0}
+ul{margin:0}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--gold); outline-offset:3px; border-radius:6px}
+
+.shell{max-width:1240px; margin:0 auto; padding:60px 20px 60px; display:grid; grid-template-columns:300px minmax(0,1fr); gap:24px; align-items:start}
+
+/* ===== sidebar ===== */
+.side{position:sticky; top:60px; background:var(--card); border:1px solid var(--line); border-radius:20px; padding:40px 26px 30px; box-shadow:var(--shadow); text-align:center}
+.avatar{width:170px; aspect-ratio:1/1; margin:0 auto; border-radius:28px; overflow:hidden; background:var(--grad-icon); box-shadow:0 0 0 1px var(--line)}
+.avatar img{width:100%; height:100%; object-fit:cover; object-position:51% 30%}
+.side h1{font-size:26px; margin-top:22px; letter-spacing:-.01em}
+.role{display:inline-block; margin-top:12px; padding:6px 16px; background:var(--card-3); border-radius:10px; font-size:12.5px; line-height:1.5; color:var(--white); font-weight:300}
+.sep{height:1px; background:var(--line); margin:28px 0}
+.contacts{list-style:none; padding:0; display:grid; gap:20px; text-align:left}
+.contacts li{display:flex; align-items:center; gap:16px; min-width:0}
+.ico{position:relative; flex:none; width:46px; height:46px; border-radius:12px; display:grid; place-items:center; background:var(--grad-border); box-shadow:var(--shadow); color:var(--gold); z-index:0}
+.ico::before{content:""; position:absolute; inset:1px; border-radius:inherit; background:var(--card-2); z-index:-1}
+.ico svg{width:18px; height:18px}
+.c-info{min-width:0}
+.c-info small{display:block; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)}
+.c-info span,.c-info a{display:block; color:var(--white); font-size:14px; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.c-info a:hover{color:var(--gold)}
+.socials{display:flex; justify-content:center; gap:14px; margin-top:26px}
+.socials a{color:var(--muted); transition:color .2s, transform .2s}
+.socials a:hover{color:var(--gold); transform:translateY(-2px)}
+.socials svg{width:20px; height:20px}
+.more-btn{display:none}
+
+/* ===== main ===== */
+.main{position:relative; background:var(--card); border:1px solid var(--line); border-radius:20px; padding:32px 40px 44px; box-shadow:var(--shadow); min-width:0}
+.tabs{position:absolute; top:0; right:0; display:flex; gap:6px; padding:0 22px; background:hsla(240,1%,17%,.75); backdrop-filter:blur(10px); border:1px solid var(--line); border-top:0; border-right:0; border-radius:0 20px 0 20px; z-index:5}
+.tabs button{background:none; border:0; color:var(--text); font-size:15px; padding:22px 14px; cursor:pointer; transition:color .2s; position:relative}
+.tabs button:hover{color:var(--muted)}
+.tabs button[aria-selected="true"]{color:var(--gold)}
+.page{display:none}
+.page.active{display:block; animation:fadeIn .5s ease both}
+@keyframes fadeIn{from{opacity:0; transform:translateY(10px)}to{opacity:1; transform:none}}
+
+.title{font-size:32px; position:relative; padding-bottom:12px; margin-bottom:26px}
+.title::after{content:""; position:absolute; left:0; bottom:0; width:40px; height:5px; border-radius:3px; background:linear-gradient(to right, var(--gold), var(--gold-2))}
+.h3{font-size:24px; margin:44px 0 22px}
+.lead{color:var(--text); font-weight:300; max-width:62em}
+.lead + .lead{margin-top:14px}
+.lead b{color:var(--white); font-weight:500}
+
+/* card base */
+.card{position:relative; background:var(--grad-border); border-radius:14px; box-shadow:var(--shadow); padding:26px; z-index:0}
+.card::before{content:""; position:absolute; inset:1px; border-radius:inherit; background:var(--grad-card); z-index:-1}
+
+/* stats */
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:30px}
+.stat{text-align:left; padding:22px}
+.stat b{display:block; font-size:30px; font-weight:600; color:var(--gold); line-height:1.1; font-variant-numeric:tabular-nums}
+.stat > span{font-size:13px; color:var(--muted); line-height:1.4; display:block; margin-top:6px}
+
+/* service grid */
+.grid2{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px}
+.svc{display:flex; gap:18px; align-items:flex-start}
+.svc .glyph{flex:none; width:42px; height:42px; color:var(--gold)}
+.svc h4{font-size:17px; margin-bottom:6px}
+.svc p{font-size:14px; color:var(--muted); font-weight:300}
+
+/* certifications */
+.cert{display:flex; justify-content:space-between; align-items:flex-start; gap:14px}
+.cert h4{font-size:16px; font-weight:500}
+.cert p{font-size:13px; color:var(--muted); margin-top:4px}
+.cert .badge{flex:none; font-size:12px; color:var(--gold); background:var(--card-3); padding:4px 10px; border-radius:8px; white-space:nowrap}
+
+/* languages */
+.langs{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+.lang h4{font-size:16px}
+.lang p{font-size:13px; color:var(--muted)}
+.bar{height:6px; background:var(--card-3); border-radius:6px; margin-top:12px; overflow:hidden}
+.bar i{display:block; height:100%; width:0; border-radius:inherit; background:linear-gradient(to right, var(--gold), var(--gold-2)); transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.page.active .bar i{width:var(--w)}
+
+/* feature with photo */
+.feature{display:grid; grid-template-columns:minmax(0,280px) minmax(0,1fr); gap:28px; align-items:center}
+.feature + .feature{margin-top:20px}
+.feature .photo{border-radius:12px; overflow:hidden; background:var(--card-3)}
+.feature .photo img{width:100%; height:auto; transition:transform .6s}
+.feature:hover .photo img{transform:scale(1.03)}
+.feature .kick{font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--gold)}
+.feature h4{font-size:20px; margin:6px 0 10px}
+.feature p{font-size:14px; font-weight:300}
+.feature p + p{margin-top:10px}
+
+/* timeline */
+.tl-head{display:flex; align-items:center; gap:16px; margin:44px 0 24px}
+.tl-head:first-of-type{margin-top:0}
+.tl-head h3{font-size:24px}
+.timeline{list-style:none; padding:0 0 0 64px; margin:0; position:relative}
+.timeline li{position:relative; padding-bottom:28px}
+.timeline li:last-child{padding-bottom:0}
+.timeline li::before{content:""; position:absolute; left:-41px; top:-26px; bottom:0; width:1px; background:var(--line)}
+.timeline li:first-child::before{top:8px}
+.timeline li:last-child::before{display:none}
+.timeline li::after{content:""; position:absolute; left:-45px; top:7px; width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 4px var(--line)}
+.timeline li.now::after{animation:pulse 2s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 4px var(--line), 0 0 0 4px rgba(255,219,112,.5)}100%{box-shadow:0 0 0 4px var(--line), 0 0 0 16px rgba(255,219,112,0)}}
+.timeline h4{font-size:16px; line-height:1.35}
+.timeline .org{font-size:14px; color:var(--text)}
+.timeline .when{display:block; font-size:13px; color:var(--gold); margin:2px 0 8px; font-weight:400}
+.timeline ul{padding-left:18px; display:grid; gap:4px; font-size:14px; font-weight:300}
+.timeline li::marker{color:var(--gold)}
+.timeline ul li{padding:0}
+.timeline ul li::before,.timeline ul li::after{display:none}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+.chip{font-size:12px; padding:4px 11px; border-radius:8px; background:var(--card-3); color:var(--text); transition:transform .2s, color .2s}
+.chip:hover{transform:translateY(-2px); color:var(--gold)}
+.chip.hot{color:var(--gold)}
+
+/* skills */
+.skillgrid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px}
+.skillgrid h4{font-size:15px; margin-bottom:4px}
+
+/* projects */
+.filter{display:flex; flex-wrap:wrap; gap:6px 24px; margin-bottom:26px}
+.filter button{background:none; border:0; color:var(--muted); font-size:15px; padding:4px 0; cursor:pointer}
+.filter button:hover{color:var(--white)}
+.filter button[aria-pressed="true"]{color:var(--gold)}
+.projects{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px}
+.proj{display:flex; flex-direction:column; padding:0; overflow:hidden}
+.proj[hidden]{display:none}
+.proj .cover{position:relative; aspect-ratio:16/10; overflow:hidden; border-radius:14px 14px 0 0; background:var(--card-3); cursor:pointer}
+.proj .cover img{width:100%; height:100%; object-fit:cover; transition:transform .5s}
+.proj .cover::after{content:""; position:absolute; inset:0; background:rgba(0,0,0,0); transition:background .3s}
+.proj:hover .cover img{transform:scale(1.08)}
+.proj:hover .cover::after{background:rgba(0,0,0,.35)}
+.proj .eye{position:absolute; left:50%; top:50%; z-index:1; width:52px; height:52px; border-radius:14px; background:var(--card-3); color:var(--gold); display:grid; place-items:center; transform:translate(-50%,-50%) scale(.8); opacity:0; transition:all .3s}
+.proj:hover .eye{transform:translate(-50%,-50%) scale(1); opacity:1}
+.proj .body{padding:22px 24px 26px; display:flex; flex-direction:column; gap:8px; flex:1}
+.proj .cat{font-size:12.5px; color:var(--muted)}
+.proj h4{font-size:18px; line-height:1.3}
+.proj p{font-size:14px; font-weight:300}
+.proj ul{padding-left:18px; font-size:14px; font-weight:300; display:grid; gap:4px}
+.proj li::marker{color:var(--gold)}
+.figs{display:flex; gap:18px; margin-top:auto; padding-top:12px; border-top:1px solid var(--line)}
+.figs div{min-width:0}
+.figs b{display:block; color:var(--gold); font-size:20px; font-weight:600}
+.figs span{font-size:12px; color:var(--muted); line-height:1.35; display:block}
+.proj .noimg{aspect-ratio:16/10; display:grid; place-items:center; background:radial-gradient(circle at 30% 20%, #3a3220, var(--card-3) 70%); border-radius:14px 14px 0 0}
+.proj .noimg b{font-size:44px; color:var(--gold); font-weight:600}
+.doi{color:var(--gold); word-break:break-all; font-size:13px}
+
+/* life */
+.mosaic{columns:3 220px; column-gap:14px}
+.ph{break-inside:avoid; margin:0 0 14px; border-radius:12px; overflow:hidden; cursor:zoom-in; background:var(--card-3); box-shadow:var(--shadow)}
+.ph img{width:100%; height:auto; transition:transform .6s cubic-bezier(.2,.7,.2,1), filter .4s}
+.ph:hover img{transform:scale(1.05)}
+@media (prefers-reduced-motion:no-preference){
+  .ph{opacity:0; transform:translateY(24px)}
+  .ph.in{animation:phIn .7s cubic-bezier(.2,.75,.2,1) forwards; animation-delay:calc(var(--k,0) * 70ms)}
+  @keyframes phIn{to{opacity:1; transform:none}}
+}
+
+/* contact */
+.reach{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px}
+.reach .card{display:flex; gap:16px; align-items:center}
+.reach small{display:block; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted)}
+.reach .val{color:var(--white); font-size:15px; word-break:break-all}
+.reach a.val{text-decoration:none}
+.reach a.val:hover{color:var(--gold)}
+.copy{margin-left:auto; flex:none; background:var(--card-3); color:var(--gold); border:0; border-radius:8px; padding:8px 14px; font-size:13px; cursor:pointer; transition:transform .2s}
+.copy:hover{transform:translateY(-2px)}
+.btn{display:inline-flex; align-items:center; gap:10px; margin-top:26px; padding:14px 22px; border-radius:14px; text-decoration:none; color:var(--gold); position:relative; background:var(--grad-border); box-shadow:var(--shadow); z-index:0; font-size:15px; transition:transform .2s}
+.btn::before{content:""; position:absolute; inset:1px; border-radius:inherit; background:var(--grad-card); z-index:-1}
+.btn:hover{transform:translateY(-2px)}
+
+/* lightbox */
+.lightbox{position:fixed; inset:0; z-index:100; background:rgba(0,0,0,.9); display:grid; place-items:center; padding:40px 16px}
+.lightbox[hidden]{display:none}
+.lightbox img{max-width:min(92vw,1100px); max-height:84vh; border-radius:10px}
+.lightbox button{position:absolute; width:46px; height:46px; border-radius:12px; border:0; background:var(--card-3); color:var(--gold); font-size:26px; cursor:pointer}
+.lb-close{top:18px; right:18px}.lb-prev{left:14px; top:50%}.lb-next{right:14px; top:50%}
+
+.reveal{opacity:1}
+@media (prefers-reduced-motion:no-preference){
+  .page.active .card,.page.active .feature,.page.active .timeline > li{animation:rise .6s cubic-bezier(.2,.75,.2,1) both}
+  .page.active .stats .card:nth-child(2),.page.active .grid2 > :nth-child(2){animation-delay:.06s}
+  .page.active .stats .card:nth-child(3),.page.active .grid2 > :nth-child(3){animation-delay:.12s}
+  .page.active .stats .card:nth-child(4),.page.active .grid2 > :nth-child(4){animation-delay:.18s}
+  @keyframes rise{from{opacity:0; transform:translateY(16px)}to{opacity:1; transform:none}}
+  .card{transition:transform .25s}
+  .card:hover{transform:translateY(-3px)}
+}
+
+/* ===== responsive ===== */
+@media (max-width:1024px){
+  .shell{grid-template-columns:1fr; padding:16px 16px 100px}
+  .side{position:relative; top:0; text-align:left; padding:20px; display:grid; grid-template-columns:auto 1fr; gap:4px 18px; align-items:center}
+  .avatar{width:84px; border-radius:18px; grid-row:span 2}
+  .side h1{font-size:20px; margin-top:0; align-self:end}
+  .role{margin-top:0; align-self:start; justify-self:start; font-size:12px}
+  .side .extra{grid-column:1 / -1; display:none}
+  .side.open .extra{display:block}
+  .more-btn{display:block; position:absolute; top:0; right:0; border:0; background:var(--card-3); color:var(--gold); font-size:12px; padding:8px 12px; border-radius:0 20px 0 12px; cursor:pointer}
+  .socials{justify-content:flex-start}
+  .tabs{position:fixed; left:0; right:0; bottom:0; top:auto; border-radius:14px 14px 0 0; border:1px solid var(--line); border-bottom:0; justify-content:center; padding:0 6px env(safe-area-inset-bottom,0px); gap:0}
+  .tabs button{padding:16px 9px; font-size:13.5px}
+  .main{padding:26px 20px 30px}
+  .stats,.langs{grid-template-columns:repeat(2,1fr)}
+  .projects,.grid2,.reach,.skillgrid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .feature{grid-template-columns:1fr}
+  .title{font-size:26px}
+  .timeline{padding-left:30px}
+  .timeline li::before{left:-21px}
+  .timeline li::after{left:-25px}
+  .mosaic{columns:2 140px; column-gap:10px}
+  .ph{margin-bottom:10px}
+  .tabs button{padding:15px 6px; font-size:12px}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="side" id="side">
+    <div class="avatar"><img src="portrait.jpg" alt="Elvin Abdullaev"></div>
+    <h1>Elvin Abdullaev</h1>
+    <p class="role">Supply Chain &amp; Operations,<br>Quantitative Analyst</p>
+    <button class="more-btn" type="button" aria-expanded="false" aria-controls="side-extra">Show contacts</button>
+    <div class="extra" id="side-extra">
+      <div class="sep"></div>
+      <ul class="contacts">
+        <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div class="c-info"><small>Email</small><a href="mailto:elvinabd@bu.edu">elvinabd@bu.edu</a></div></li>
+        <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/></svg></span><div class="c-info"><small>LinkedIn</small><a href="https://www.linkedin.com/in/elvin-abdullaev/" target="_blank" rel="noopener">in/elvin-abdullaev</a></div></li>
+        <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span><div class="c-info"><small>Education</small><span>M.S., BU Questrom '26</span><span>B.S., NArFU '25</span></div></li>
+        <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div class="c-info"><small>Location</small><span>Boston, MA</span></div></li>
+      </ul>
+      <div class="sep"></div>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/elvin-abdullaev/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button role="tab" data-tab="about" aria-selected="true">About</button>
+      <button role="tab" data-tab="resume" aria-selected="false">Resume</button>
+      <button role="tab" data-tab="portfolio" aria-selected="false">Portfolio</button>
+      <button role="tab" data-tab="contact" aria-selected="false">Contact</button>
+    </nav>
+
+    <!-- ===== ABOUT ===== -->
+    <article class="page active" id="about" role="tabpanel">
+      <h2 class="title">About Me</h2>
+      <p class="lead">Hi, I'm Elvin. I grew up in Arkhangelsk, a port city in Russia's Arctic north, and came to Boston to earn an <b>M.S. in Management from Boston University's Questrom School of Business</b>, with a focus on supply chains.</p>
+      <p class="lead">For two years I coordinated freight for an agricultural company: scheduling trucks and drivers, negotiating with more than 40 carriers, and taking over 20 calls a day. That job taught me that most supply chain problems are information problems. Since then I've worked on consulting projects for CIBC and NEREID, published peer-reviewed research, and today I work as a <b>Quantitative Analyst at Global Key Advisors</b>, analyzing SEC filings in Python.</p>
+
+      <div class="stats">
+        <div class="card stat"><b><span data-count="40">40</span>+</b><span>carriers sourced and managed</span></div>
+        <div class="card stat"><b><span data-count="95">95</span>%</b><span>on-time fulfillment</span></div>
+        <div class="card stat"><b>+<span data-count="20">20</span>%</b><span>repeat bookings</span></div>
+        <div class="card stat"><b data-count="4">4</b><span>languages spoken</span></div>
+      </div>
+
+      <h3 class="h3">What I'm doing</h3>
+      <div class="grid2">
+        <div class="card svc"><svg class="glyph" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="16" width="24" height="16" rx="2"/><path d="M28 21h8l6 6v5h-14z"/><circle cx="12" cy="34" r="4"/><circle cx="36" cy="34" r="4"/></svg><div><h4>Supply chain operations</h4><p>Transportation coordination, carrier management, shipment tracking, and inventory records.</p></div></div>
+        <div class="card svc"><svg class="glyph" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 40h36"/><rect x="10" y="24" width="6" height="16"/><rect x="21" y="14" width="6" height="26"/><rect x="32" y="8" width="6" height="32"/></svg><div><h4>Data analysis</h4><p>Python, Excel, and Tableau to turn operational and financial data into decisions.</p></div></div>
+        <div class="card svc"><svg class="glyph" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6h20l8 8v28H10z"/><path d="M30 6v8h8M16 22h16M16 28h16M16 34h10"/></svg><div><h4>Quantitative research</h4><p>Peer-reviewed labor market research and SEC filings analysis for academic studies.</p></div></div>
+        <div class="card svc"><svg class="glyph" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="9"/><circle cx="24" cy="24" r="2"/><path d="m24 24 14-14M34 10h4v4"/></svg><div><h4>Strategy consulting</h4><p>Market research, benchmarking, and customer journeys for CIBC, NEREID, and Rush Coffee.</p></div></div>
+      </div>
+
+      <h3 class="h3">Education</h3>
+      <div class="grid2">
+        <div class="card svc"><svg class="glyph" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M44 18 24 8 4 18l20 10 20-10z"/><path d="M12 22v10c6 5 18 5 24 0V22M44 18v12"/></svg><div><h4>Master of Science in Management</h4><p>Boston University, Questrom School of Business, Boston, USA. Dean's Scholarship. 2025–2026.</p></div></div>
+        <div class="card svc"><svg class="glyph" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="36" height="28" rx="3"/><path d="M6 16h36M19 25l-4 4 4 4M29 25l4 4-4 4M26 23l-4 12"/></svg><div><h4>Bachelor of Science in Business Informatics</h4><p>Northern (Arctic) Federal University, Arkhangelsk, Russia. With honors, GPA 4.9/5. 2021–2025.</p></div></div>
+      </div>
+
+      <h3 class="h3">Certifications</h3>
+      <div class="grid2">
+        <div class="card cert"><div><h4>Technology Entrepreneurship: Lab to Market</h4><p>HarvardX (edX), Verified Certificate</p></div><span class="badge">Sep 2026</span></div>
+        <div class="card cert"><div><h4>Supply Chain Operations and Management</h4><p>Coursera, Amazon Web Services</p></div><span class="badge">Oct 2026</span></div>
+        <div class="card cert"><div><h4>Data, Forecasting, and Performance Analysis</h4><p>Coursera, Amazon Web Services</p></div><span class="badge">Oct 2026</span></div>
+        <div class="card cert"><div><h4>Data Visualization in Excel</h4><p>DataCamp · <a class="doi" href="https://www.datacamp.com/completed/statement-of-accomplishment/course/a5fe475d83ce3b0da5f6ad8d966ca3655e9685d9" target="_blank" rel="noopener">Show credential ↗</a></p></div><span class="badge">Jul 2025</span></div>
+        <div class="card cert"><div><h4>Data Analysis in Excel</h4><p>DataCamp · <a class="doi" href="https://www.datacamp.com/completed/statement-of-accomplishment/course/ddf9163f4c2e2d987875f859fc33a186bb043925" target="_blank" rel="noopener">Show credential ↗</a></p></div><span class="badge">Jul 2025</span></div>
+        <div class="card cert"><div><h4>Data Preparation in Excel</h4><p>DataCamp · <a class="doi" href="https://www.datacamp.com/completed/statement-of-accomplishment/course/7bc659d0c4f2617d88d2b4175cfe1cd68d2af838" target="_blank" rel="noopener">Show credential ↗</a></p></div><span class="badge">Jul 2025</span></div>
+        <div class="card cert"><div><h4>Digital Marketing and Social Media</h4><p>Peter the Great St. Petersburg Polytechnic University · <a class="doi" href="https://open.spbstu.ru/certificate/02DIGMARK-0123-2-1.pdf" target="_blank" rel="noopener">Show credential ↗</a></p></div><span class="badge">Feb 2023</span></div>
+      </div>
+
+      <h3 class="h3">Languages</h3>
+      <div class="langs">
+        <div class="card lang"><h4>Russian</h4><p>Native</p><div class="bar"><i style="--w:100%"></i></div></div>
+        <div class="card lang"><h4>Azerbaijani</h4><p>Native</p><div class="bar"><i style="--w:100%"></i></div></div>
+        <div class="card lang"><h4>Turkish</h4><p>Fluent</p><div class="bar"><i style="--w:88%"></i></div></div>
+        <div class="card lang"><h4>English</h4><p>Professional</p><div class="bar"><i style="--w:85%"></i></div></div>
+      </div>
+
+      <h3 class="h3">In the room</h3>
+      <div class="card feature"><div class="photo"><img src="hbs-summit.jpg" alt="Elvin at the Harvard Business School Entrepreneurship Summit 2026" loading="lazy"></div><div><span class="kick">Harvard Business School · 2026</span><h4>Entrepreneurship Summit</h4><p>Founders of Opendoor, Runway, and Polymarket with HBS faculty on execution, go-to-market, and AI. My takeaway: the real value is in the quality of the questions.</p></div></div>
+      <div class="card feature"><div class="photo"><img src="whoop-keynote.jpg" alt="Will Ahmed of WHOOP on stage at Boston University" loading="lazy"></div><div><span class="kick">BU Questrom · Raif Ali Dinçkök Student Forum</span><h4>Keynote with Will Ahmed, WHOOP</h4><p>How one founder who kept asking questions about human performance built an entirely new category. The best founders build through uncertainty.</p></div></div>
+      <div class="card feature"><div class="photo"><img src="mit-ksc.jpg" alt="Elvin with his brother Zuhayr at the MIT Kuo Sharper Center conference" loading="lazy"></div><div><span class="kick">MIT Kuo Sharper Center · 2026</span><h4>Innovation in Global Growth Markets</h4><p>Two days with founders, ministers, and investors from Africa, Latin America, the Arab Region, and Central Asia, shared with my brother Zuhayr.</p></div></div>
+    </article>
+
+    <!-- ===== RESUME ===== -->
+    <article class="page" id="resume" role="tabpanel">
+      <h2 class="title">Resume</h2>
+
+      <div class="tl-head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span><h3>Education</h3></div>
+      <ol class="timeline">
+        <li><h4>Boston University, Questrom School of Business</h4><span class="when">Jul 2025 — May 2026</span><p class="org">M.S. in Management, supply chain focus</p><ul><li>Dean's Scholarship for outstanding academic achievement</li><li>Client projects with CIBC, NEREID (top 3 of 20 teams), and Rush Coffee</li></ul></li>
+        <li><h4>Northern (Arctic) Federal University</h4><span class="when">Sep 2021 — Jul 2025</span><p class="org">B.S. in Business Informatics, with honors · GPA 4.9/5</p><ul><li>Governor's Scholarship; Increased State Academic Scholarship for a GPA of 4.8+</li><li>Golden Fund winner, Student Science category</li><li>Volunteering Center, student event organizer, Business Informatics Student Association, volleyball team</li></ul></li>
+      </ol>
+
+      <div class="grid2" style="margin-top:28px">
+        <div class="card feature" style="grid-template-columns:1fr"><div class="photo"><img src="bu-graduation.jpg" alt="Elvin at Boston University commencement" loading="lazy"></div><div><span class="kick">Boston · May 2026</span><h4>Master's, Boston University</h4></div></div>
+        <div class="card feature" style="grid-template-columns:1fr; margin-top:0"><div class="photo"><img src="narfu-graduation.jpg" alt="Elvin at graduation from Northern (Arctic) Federal University" loading="lazy"></div><div><span class="kick">Arkhangelsk · July 2025</span><h4>Golden Fund winner, NArFU</h4></div></div>
+      </div>
+
+      <div class="tl-head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></span><h3>Experience</h3></div>
+      <ol class="timeline">
+        <li class="now"><h4>Quantitative Analyst</h4><span class="when">Jul 2026 — Present · Remote</span><p class="org">Global Key Advisors, San Francisco, CA</p><ul><li>Support quantitative research at a financial advisory firm focused on insider-trading and public-markets analysis.</li><li>Evaluated early-stage startups for a due-diligence project.</li><li>Use Python to analyze SEC filings data (delistings, impairments, shell-company changes) for a research paper on startup success and failure.</li></ul></li>
+        <li><h4>Supply Chain &amp; Operations Coordinator</h4><span class="when">Sep 2023 — May 2025</span><p class="org">Private Agricultural Enterprise, Yemetsk, Russia</p><ul><li>Coordinated inbound and outbound shipments, scheduling trucks and drivers from farm to retail.</li><li>Primary contact for retail clients and trucking companies, 20+ calls a day.</li><li>Sourced and negotiated with 40+ transportation providers.</li><li>Tracked shipments and kept records of orders, deliveries, and inventory for reporting.</li></ul></li>
+        <li><h4>Teaching Assistant, Statistical Analysis</h4><span class="when">Sep 2024 — Apr 2025 · Part-time</span><p class="org">Northern (Arctic) Federal University</p><ul><li>Held weekly office hours; developed and graded homework and exams.</li></ul></li>
+        <li><h4>Junior Travel Sales &amp; Operations Coordinator</h4><span class="when">Oct 2022 — Feb 2023</span><p class="org">Travel Club, Arkhangelsk, Russia</p><ul><li>Evaluated 15+ travel packages; recommendations lifted repeat bookings by 20%.</li><li>Interviewed 100+ customers a month; 95% on-time fulfillment across accounts.</li></ul></li>
+      </ol>
+
+      <div class="tl-head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v6c0 4.5 3.4 7.5 8 8 4.6-.5 8-3.5 8-8V7z"/><path d="m9 12 2 2 4-4"/></svg></span><h3>Skills</h3></div>
+      <div class="skillgrid">
+        <div class="card"><h4>Supply chain &amp; operations</h4><div class="chips"><span class="chip hot">Transportation coordination</span><span class="chip hot">Carrier management</span><span class="chip">Shipment tracking</span><span class="chip">Order management</span><span class="chip">3PL coordination</span><span class="chip">Procurement</span><span class="chip">Inventory management</span><span class="chip">Bills of lading</span><span class="chip">ERP systems</span><span class="chip">KPI tracking</span></div></div>
+        <div class="card"><h4>Analytics &amp; data</h4><div class="chips"><span class="chip hot">Python (pandas, numpy)</span><span class="chip hot">Data analysis</span><span class="chip">Statistical modeling</span><span class="chip">Dashboard reporting</span><span class="chip">Root cause analysis</span><span class="chip">Quantitative research</span><span class="chip">SQL (basics)</span></div></div>
+        <div class="card"><h4>Tools</h4><div class="chips"><span class="chip hot">Excel (Power Query, XLOOKUP)</span><span class="chip">Tableau</span><span class="chip">Google Colab</span><span class="chip">CRM systems</span><span class="chip">TMS</span></div></div>
+        <div class="card"><h4>Finance</h4><div class="chips"><span class="chip hot">Financial modeling</span><span class="chip">Variance analysis</span><span class="chip">Budgeting &amp; forecasting</span><span class="chip">Financial reporting</span></div></div>
+      </div>
+    </article>
+
+    <!-- ===== PORTFOLIO ===== -->
+    <article class="page" id="portfolio" role="tabpanel">
+      <h2 class="title">Portfolio</h2>
+      <div class="filter" role="group" aria-label="Filter projects">
+        <button type="button" data-f="consulting" aria-pressed="true">Consulting</button>
+        <button type="button" data-f="research" aria-pressed="false">Research</button>
+      </div>
+      <div class="projects">
+        <div class="card proj" data-cat="consulting">
+          <div class="cover" data-src="cibc-presenting.jpg"><img src="cibc-presenting.jpg" alt="Elvin presenting the CIBC project" loading="lazy" style="object-position:center 40%"><span class="eye"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span></div>
+          <div class="body"><span class="cat">Consulting · CIBC · Oct–Dec 2025</span><h4>Retirement advice for a global workforce</h4><p>Retirement advice for H-1B, OPT, and other globally mobile employees at one of Canada's Big Five banks.</p><ul><li>Benchmarked 20+ retirement providers, from legacy banks to fintechs.</li><li>Found five portability gaps across the U.S., China, and India.</li><li>Recommended a portability calculator and retirement audits in a board-ready deck.</li></ul><div class="figs"><div><b>20+</b><span>providers</span></div><div><b>3</b><span>countries</span></div><div><b>5</b><span>gaps found</span></div></div></div>
+        </div>
+        <div class="card proj" data-cat="consulting">
+          <div class="cover" data-src="nereid-final.jpg"><img src="nereid-final.jpg" alt="NEREID team at the final presentation" loading="lazy"><span class="eye"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span></div>
+          <div class="body"><span class="cat">Consulting · NEREID · Jan–Mar 2026</span><h4>Why boaters still call the marina</h4><p>Product strategy for a platform that connects boaters with marinas through online berth reservations.</p><ul><li>Mapped the journey from marina search to docking with user interviews and analog research.</li><li>Found where trust breaks: unclear confirmations and arrival responsibilities.</li><li>Recommended product and UX fixes for the main drop-off points.</li></ul><div class="figs"><div><b>Top 3</b><span>of 20 teams</span></div><div><b>6</b><span>person team</span></div></div></div>
+        </div>
+        <div class="card proj" data-cat="consulting">
+          <div class="cover" data-src="rush-presenting.jpg"><img src="rush-presenting.jpg" alt="Elvin presenting Rush Coffee" loading="lazy"><span class="eye"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span></div>
+          <div class="body"><span class="cat">Strategy · Rush Coffee · Sep–Oct 2025</span><h4>Grab-and-go coffee, built on tech</h4><p>A fast, affordable coffee concept for students and commuters near Boston University.</p><ul><li>Market research and competitive analysis against Starbucks and Pavement.</li><li>Mobile ordering, smart pickup lockers, predictive ordering, and loyalty.</li><li>Pricing, financial projections, unit economics, and break-even.</li></ul><div class="figs"><div><b>4</b><span>tech features</span></div><div><b>BU</b><span>campus market</span></div></div></div>
+        </div>
+        <div class="card proj" data-cat="research">
+          <div class="noimg"><b>2024</b></div>
+          <div class="body"><span class="cat">Research · Arctic and North · Dec 2024</span><h4>Statistical analysis of the labor force of the Arkhangelsk Oblast</h4><p>Peer-reviewed quantitative analysis of regional employment trends using government datasets.</p><p>DOI: <a class="doi" href="https://doi.org/10.37482/issn2221-2698.2024.57.77" target="_blank" rel="noopener">10.37482/issn2221-2698.2024.57.77 ↗</a></p><div class="figs"><div><b>Peer</b><span>reviewed</span></div><div><b>2024</b><span>published</span></div></div></div>
+        </div>
+        <div class="card proj" data-cat="research">
+          <div class="noimg"><b>MA</b></div>
+          <div class="body"><span class="cat">Research · Working paper · 2026</span><h4>Labor shortages in Massachusetts warehousing and transportation</h4><p>Research on the workforce gap in the state's logistics sector and what it means for operations.</p><div class="figs"><div><b>MA</b><span>logistics labor</span></div></div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===== CONTACT ===== -->
+    <article class="page" id="contact" role="tabpanel">
+      <h2 class="title">Contact</h2>
+      <p class="lead" style="margin-bottom:26px">I'm open to conversations about supply chain, operations, analytics, and research.</p>
+      <div class="reach">
+        <div class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><small>Email</small><span class="val txt">elvinabd@bu.edu</span></div><button class="copy" type="button" data-copy="elvinabd@bu.edu">Copy</button></div>
+        <div class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/></svg></span><div><small>LinkedIn</small><a class="val" href="https://www.linkedin.com/in/elvin-abdullaev/" target="_blank" rel="noopener">in/elvin-abdullaev ↗</a></div></div>
+        <div class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><small>Location</small><span class="val">Boston, MA</span></div></div>
+        <div class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg></span><div><small>Currently</small><span class="val">Quantitative Analyst, Global Key Advisors</span></div></div>
+      </div>
+      <a class="btn" href="https://www.linkedin.com/in/elvin-abdullaev/" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>Message me on LinkedIn</a>
+    </article>
+  </main>
+</div>
+
+<div class="lightbox" hidden><button class="lb-close" type="button" aria-label="Close">×</button><button class="lb-prev" type="button" aria-label="Previous">‹</button><img alt=""><button class="lb-next" type="button" aria-label="Next">›</button></div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var tabs = [].slice.call(document.querySelectorAll('.tabs button'));
+  var pages = [].slice.call(document.querySelectorAll('.page'));
+  var names = tabs.map(function(t){ return t.getAttribute('data-tab'); });
+
+  function show(name, scroll){
+    if(names.indexOf(name) < 0) name = 'about';
+    tabs.forEach(function(t){ t.setAttribute('aria-selected', t.getAttribute('data-tab') === name ? 'true' : 'false'); });
+    pages.forEach(function(p){ p.classList.toggle('active', p.id === name); });
+    if(scroll) window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'});
+    if(name === 'about') countUp();
+    if(name === 'life') revealLife();
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      var n = t.getAttribute('data-tab');
+      if(location.hash !== '#' + n){ try{ history.replaceState(null, '', '#' + n); }catch(e){ location.hash = n; } }
+      show(n, true);
+    });
+  });
+  addEventListener('hashchange', function(){ show(location.hash.slice(1), true); });
+
+  // sidebar toggle (mobile)
+  var side = document.getElementById('side'), more = side.querySelector('.more-btn');
+  more.addEventListener('click', function(){
+    var open = side.classList.toggle('open');
+    more.setAttribute('aria-expanded', open ? 'true' : 'false');
+    more.textContent = open ? 'Hide contacts' : 'Show contacts';
+  });
+
+  // count-up
+  var counted = false;
+  function countUp(){
+    if(counted || reduce) return; counted = true;
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      var target = +el.getAttribute('data-count'), t0 = null, dur = 1200;
+      function step(ts){ if(!t0) t0 = ts; var p = Math.min((ts - t0)/dur, 1); el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))); if(p < 1) requestAnimationFrame(step); }
+      requestAnimationFrame(step);
+    });
+  }
+
+  // life reveal
+  var io = null;
+  function revealLife(){
+    var items = document.querySelectorAll('.ph:not(.in)');
+    if(reduce || !('IntersectionObserver' in window)){ items.forEach(function(p){ p.classList.add('in'); }); return; }
+    if(!io) io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -5% 0px'});
+    items.forEach(function(p, i){ p.style.setProperty('--k', i % 3); io.observe(p); });
+  }
+
+  // portfolio filter
+  var fbtns = [].slice.call(document.querySelectorAll('.filter button'));
+  fbtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = b.getAttribute('data-f');
+      fbtns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      document.querySelectorAll('.proj').forEach(function(p){ p.hidden = !(f === 'all' || p.getAttribute('data-cat') === f); });
+    });
+  });
+
+  document.querySelectorAll('.proj').forEach(function(p){ p.hidden = p.getAttribute('data-cat') !== 'consulting'; });
+
+  // copy
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var done = function(){ var o = btn.textContent; btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = o; }, 1600); };
+      var sel = function(){ var el = btn.parentNode.querySelector('.txt'); if(!el) return; var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+      try{ navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(done, sel); }catch(e){ sel(); }
+    });
+  });
+
+  // lightbox (life photos + project covers)
+  var lb = document.querySelector('.lightbox'), lbImg = lb.querySelector('img'), list = [], cur = 0;
+  function open(group, i){ list = group; cur = (i + list.length) % list.length; lbImg.src = list[cur].src; lbImg.alt = list[cur].alt; lb.hidden = false; }
+  var lifeImgs = [].slice.call(document.querySelectorAll('.ph img'));
+  lifeImgs.forEach(function(img, i){ img.parentNode.tabIndex = 0; img.parentNode.addEventListener('click', function(){ open(lifeImgs, i); }); img.parentNode.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ open(lifeImgs, i); } }); });
+  var covers = [].slice.call(document.querySelectorAll('.cover img'));
+  covers.forEach(function(img, i){ img.parentNode.addEventListener('click', function(){ open(covers, i); }); });
+  lb.querySelector('.lb-close').onclick = function(){ lb.hidden = true; };
+  lb.querySelector('.lb-prev').onclick = function(e){ e.stopPropagation(); open(list, cur - 1); };
+  lb.querySelector('.lb-next').onclick = function(e){ e.stopPropagation(); open(list, cur + 1); };
+  lb.addEventListener('click', function(e){ if(e.target === lb) lb.hidden = true; });
+  addEventListener('keydown', function(e){ if(lb.hidden) return; if(e.key === 'Escape') lb.hidden = true; if(e.key === 'ArrowLeft') open(list, cur - 1); if(e.key === 'ArrowRight') open(list, cur + 1); });
+
+  show(location.hash.slice(1) || 'about', false);
+})();
+</script>
+</body>
+</html>
